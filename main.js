@@ -149,10 +149,7 @@ var centralDiv = document.createElement("div");
 
     thread.appendChild(centralDiv);
     thread.appendChild(lowerMainDiv);
-    var newele = document.createElement("a");
-    newele.innerHTML = "hello";
-    newele.href = "#";
-    thread.appendChild(newele);
+    
 
 
     body.appendChild(thread);
@@ -214,8 +211,8 @@ function sendDataToServer(length){
 
     }).then(
         (onResolved) => {
-            Location.reload();
-            console.log("reached");
+            location.reload();
+
 
         },
         (onRejected) => {
@@ -223,6 +220,7 @@ function sendDataToServer(length){
             alert("post failed !");
         }
     );
+
 }
 
 document.getElementById("input_img").addEventListener("change",fileChange)
