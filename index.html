@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script type="text/javascript">
+       
+      </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="module">
+        import interact from 
+        'https://cdn.interactjs.io/v1.10.11/interactjs/index.js'
+
+        const position = { x: 0, y: 0 }
+
+        // target elements with the "draggable" class
+interact('.thread')
+  .draggable({
+    // enable inertial throwing
+    inertia: false,
+    // keep the element within the area of it's parent
+    modifiers: [
+      interact.modifiers.restrictRect({
+        restriction: 'parent',
+        endOnly: true
+      })
+    ],
+    // enable autoScroll
+    autoScroll: false,
+
+    listeners: {
+      // call this function on every dragmove event
+      move: dragMoveListener,
+
+      // call this function on every dragend event
+      end (event) {
+      }
+    }
+  })
+  function dragMoveListener (event) {
+
+
+  var target = event.target
+  // keep the dragged position in the data-x/data-y attributes
+  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+  // translate the element
+  target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+  // update the posiion attributes
+  target.setAttribute('data-x', x)
+  target.setAttribute('data-y', y)
+}
+
+// this function is used later in the resizing and gesture demos
+window.dragMoveListener = dragMoveListener
+        </script>
+      
+      <script src="main.js" type="module"></script>
+      <script src="firestore.js" type="module"></script>
+
+       
+    <title>Document</title>
+</head>
+<body >
+    <div id="main">
+   
+    <div id="form" style="display: none;">
+        <a href="#" id="close">[X]</a>
+        <div style="display: flex; flex-direction: row;">
+        <form id="addThread" action="" style="display: flex; flex-direction: column; justify-content:space-evenly;">
+            <input type="text" name="Topic" placeholder="Topic">
+           
+            <input type="text" name="Name" placeholder="Anonymous">
+          
+            <textarea name="Content"  cols="30" rows="10"></textarea>
+           
+            <input type="file" id="input_img"  accept="image/*">
+            <button id="postBtn" style="display: none;">POST</button>
+            <img src="images/load.gif" id="loader" style="width: 20px; display: none;" alt="">
+        </form>
+        </div>>
+    </div>
+    <div >
+        <a href="#" style="position: absolute;bottom: 0; right: 0; z-index: 100000000000; font-size: 20px;font-weight: bold; background-color: #E4D1B9;" id="openForm">Post A Thread</a>
+    </div>
+
+   
+</body>
+</html>
