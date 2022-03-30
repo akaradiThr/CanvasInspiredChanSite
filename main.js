@@ -153,9 +153,9 @@ var centralDiv = document.createElement("div");
 
 
     body.appendChild(thread);
+    var screenWidth = $("#form").parent().width();
 
-    var screenWidth = screen.width;
-    var screenHeight = screen.height;
+    var screenHeight = $("#form").parent().height();
 
     var randomX = Math.floor(Math.random() * screenWidth) ;
     var randomY = Math.floor(Math.random() * screenHeight) ;
